@@ -6,13 +6,20 @@
     return tab.url; // returns the current url
 }
 
-
-async function main() {
-    const mainURL = await getCurrentURL();
-    console.log("Hello test: ", mainURL); //Appel fonction
-    
+async function handleTabChange() {
+    const currentURL = await getCurrentURL();
+    console.log("Tab changed, current URL: ", currentURL);
 }
-main();
+
+chrome.tabs.onActivated.addListener(async (activeInfo) => {
+    await handleTabChange();
+});
+
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+    if (changeInfo.status === 'complete' && tab.active) {
+        await handleTabChange();
+    }
+});
 
 // COLLECTE URL
 // CHECK SI URL CORRESPOND AU SITE ACTUEL
