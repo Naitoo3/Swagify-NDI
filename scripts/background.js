@@ -1,5 +1,5 @@
 //TODO: function that collects the current URL and stores it  
-
+import { lienstab } from "./rules.js"; // importation 
 
  async function getCurrentURL() {
     const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true});
@@ -20,6 +20,16 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
         await handleTabChange();
     }
 });
+
+// partie cookie
+
+function loadWhitelist() {
+    return lienstab;
+} // on rend simplement le tableau disponible
+function BlocageCookie() {
+    liensTab = loadWhitelist(); // On récupère les données de load white list
+    
+}
 
 // COLLECTE URL
 // CHECK SI URL CORRESPOND AU SITE ACTUEL
