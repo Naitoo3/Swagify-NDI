@@ -1,0 +1,17 @@
+{
+  "name" : "Swagify",
+  "description" : "Extension google qui bloque les traqueurs publicitaires",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "main.html",
+    "default_icon": "images/main_img.png"
+  },
+  "background" : {
+    "service_worker": "scripts/background.js"
+  },
+  "permissions": [
+    "cookies",
+    "tabs"
+  ]
+}
