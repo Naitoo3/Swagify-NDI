@@ -21,11 +21,6 @@ Ici, c'est un court tutoriel qui permet d'installer l'extension.
 ## Usage de l'extension
 Cette extension peut être utilisée dans le cadre d'une navigation normale, tout en bloquant en arrière-plan un ensemble de traqueurs publicitaires utilisés pour récolter des informations personelles.
 
-<!-- CONTRIBUTING -->
-## Contributions
-
-ease fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## Licence
 Ce fichier est distribué sous une licence libre de droit, et plus exactement sous la licence GNU 3.0
