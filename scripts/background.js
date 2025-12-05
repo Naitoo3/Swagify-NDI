@@ -1,4 +1,3 @@
-//TODO: function that collects the current URL and stores it  
 import { lienstab } from "./rules.js"; // importation 
 
  async function getCurrentURL() {
@@ -19,6 +18,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     if (changeInfo.status === 'complete' && tab.active) {
         await handleTabChange();
     }
+    BlocageCookie(); 
 });
 
 // partie cookie
@@ -26,12 +26,37 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 function loadWhitelist() {
     return lienstab;
 } // on rend simplement le tableau disponible
+
 function BlocageCookie() {
-    liensTab = loadWhitelist(); // On récupère les données de load white list
     
+    const liens = getCurrentURL();
+    const liensTab = loadWhitelist();
+    let CookieBlocked = 0;
+    
+    if (!liensTab || liensTab.length === 0) {
+        return false;
+    }
+
+    for (const ruleObject of liensTab) {
+
+        if (liens.includes(ruleObject)) {
+            return;
+        }
+
+        chrome.cookies.getAll({ url: liens }, (cookies) => {
+            cookies.forEach(cookie => {
+                chrome.cookies.remove({ url: liens, name: cookie.name });
+                CookieBlockedCount++;
+            });
+        });
+    }
+    return CookieBlocked;
 }
 
-// COLLECTE URL
-// CHECK SI URL CORRESPOND AU SITE ACTUEL
-// Bloquer cookie en page actuelle
+export function getBlockedCookieCount() {}
+
+
+
+
+// Bloquer cookie en page actuelle ( A FAIRE )
 // afficher nb cookies bloqués
