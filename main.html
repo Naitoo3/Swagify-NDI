@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="fr">
   <head>
+    <title></title>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
   </head>
 <body>
@@ -9,12 +11,6 @@
 <div class="swagify-container">
     <div class="swagify-sidebar">SWAGIFY.ME</div>
     <div class="swagify-content">
-        <div class="swagify-header">
-            <div class="close-button">
-                <span class="close-x"></span>
-            </div>
-        </div>
-
         <div class="swagify-button-area">
             <div class="swagify-dial">
                 <div id="bigRedButton" class="big-red-button"></div>
@@ -30,6 +26,7 @@
         </div>
 
         <div class="swagify-footer">
+          <div class="counter-text" id="counter-text">Nombre cookies bloqués</div>
             <div id="counter" class="counter">0</div>
             <div class="sad-cookie">
                 <div class="cross x1"></div>
@@ -41,8 +38,6 @@
         </div>
     </div>
 </div>
-
-
   <script type="module" src="scripts/background.js"></script>
 </body>
 
