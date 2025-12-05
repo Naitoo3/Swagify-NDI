@@ -1,0 +1,264 @@
+/* Variables pour les couleurs */
+:root {
+    --main-bg: #333333;
+    --dark-bg: #222222;
+    --red-primary: #ff0000;
+    --red-shadow: #cc0000;
+    --dial-grey: #666666;
+    --cookie-yellow: #a07a00;
+    --cookie-brown: #7b5f00;
+}
+
+/* 1. Conteneur global et fond */
+.swagify-container {
+    display: flex;
+    width: 300px; /* Ajuster selon vos besoins */
+    height: 500px; /* Ajuster selon vos besoins */
+    background-color: var(--main-bg);
+    border: 5px solid var(--dark-bg);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden; /* Pour contenir les éléments internes */
+}
+
+/* 2. Barre latérale "SWAGIFY.ME" */
+.swagify-sidebar {
+    width: 40px;
+    height: 100%;
+    background-color: var(--dark-bg);
+    color: var(--red-primary);
+    font-family: 'Arial Black', sans-serif; /* Police similaire à l'image */
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-align: center;
+    padding-top: 20px;
+    /* Rotation et alignement du texte vertical */
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    line-height: 1.2;
+}
+
+/* 3. Zone de contenu principale */
+.swagify-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px 10px 10px; /* Marge interne pour le contenu */
+}
+
+/* 4. En-tête (pour le bouton X) */
+.swagify-header {
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* 5. Bouton de fermeture (X) */
+.close-button {
+    width: 30px;
+    height: 30px;
+    background-color: var(--red-primary);
+    border: 2px solid var(--dark-bg);
+    position: relative;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.close-x {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    /* Création de la croix (X) */
+    background: transparent;
+}
+.close-x::before, .close-x::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 3px;
+    background-color: var(--dark-bg);
+    border-radius: 1px;
+}
+.close-x::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.close-x::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* 6. Zone du grand bouton rouge */
+.swagify-button-area {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px 0;
+}
+
+.swagify-dial {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: var(--dial-grey);
+    border: 8px solid var(--dark-bg);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+/* 7. Le grand bouton rouge lui-même */
+.big-red-button {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background-color: var(--red-primary);
+    /* Ombre pour effet 3D non-pressé */
+    box-shadow: 0 10px 0 var(--red-shadow), /* Ombre portée (simule l'épaisseur) */
+                inset 0 0 10px rgba(255, 255, 255, 0.3), /* Reflet */
+                inset 0 5px 10px rgba(0, 0, 0, 0.5); /* Ombre interne */
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+}
+
+/* 8. Animation du bouton pressé (Classe à ajouter via JS au clic) */
+.big-red-button.active {
+    /* Suppression de l'ombre portée */
+    box-shadow: 0 0px 0 var(--red-shadow),
+                inset 0 0 10px rgba(255, 255, 255, 0.3),
+                inset 0 5px 10px rgba(0, 0, 0, 0.5);
+    /* Décalage vers le bas (effet pressé) */
+    transform: translateY(10px);
+}
+
+
+/* 9. Vis autour du cadran */
+.screw {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--dark-bg);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* La marque X sur la vis */
+.screw::before, .screw::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    background-color: var(--dial-grey);
+    border-radius: 1px;
+}
+.screw::before {
+    transform: rotate(45deg);
+}
+.screw::after {
+    transform: rotate(-45deg);
+}
+
+/* Positionnement des vis (utilisé pour 8 vis) */
+/* Utilisation de SASS/LESS ou une approche de grille serait plus propre, mais voici les positions directes */
+.screw-1 { top: 0; left: 50%; transform: translate(-50%, -50%); }
+.screw-2 { top: 50%; left: 0; transform: translate(-50%, -50%); }
+.screw-3 { top: 50%; right: 0; transform: translate(50%, -50%); }
+.screw-4 { bottom: 0; left: 50%; transform: translate(-50%, 50%); }
+/* Vis diagonales */
+.screw-5 { top: 15%; left: 15%; transform: translate(-50%, -50%); }
+.screw-6 { top: 15%; right: 15%; transform: translate(50%, -50%); }
+.screw-7 { bottom: 15%; left: 15%; transform: translate(-50%, 50%); }
+.screw-8 { bottom: 15%; right: 15%; transform: translate(50%, 50%); }
+
+/* 10. Bas de l'application (Compteur et Cookie) */
+.swagify-footer {
+    height: 80px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.counter {
+    color: white;
+    font-size: 40px;
+    font-family: 'Consolas', monospace; /* Police pour un look numérique */
+    padding-left: 10px;
+}
+
+/* 11. Icône "Cookie" (Visage triste) */
+.sad-cookie {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--cookie-yellow);
+    border: 2px solid var(--cookie-brown);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 5px var(--cookie-brown);
+    overflow: hidden;
+}
+/* Les yeux en X */
+.cross {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+}
+.cross::before, .cross::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 15px;
+    height: 3px;
+    background-color: var(--dark-bg);
+    border-radius: 1px;
+    /* Ajustement pour le centre */
+    transform-origin: 50% 50%;
+}
+.cross::before { transform: translate(-50%, -50%) rotate(45deg); }
+.cross::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+.x1 { left: 15px; top: 15px; } /* Oeil gauche */
+.x2 { right: 15px; top: 15px; } /* Oeil droit */
+
+/* Bouche triste */
+.sad-mouth {
+    position: absolute;
+    bottom: 10px;
+    width: 30px;
+    height: 5px;
+    background-color: var(--dark-bg);
+    border-radius: 0 0 50px 50px / 0 0 10px 10px;
+    border-bottom: 2px solid var(--dark-bg);
+    transform: rotate(180deg);
+}
+
+/* "Patchs" de l'icône */
+.patch {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--cookie-brown);
+    transform: rotate(45deg);
+    z-index: 10;
+}
+.patch-left {
+    bottom: 10px;
+    left: 8px;
+}
+.patch-right {
+    top: 10px;
+    right: 8px;
+}
