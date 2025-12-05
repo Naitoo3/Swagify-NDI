@@ -7,16 +7,16 @@
  */
 export const liensTab = [
     {
-        domain: "iutparis-seine.u-paris.fr", 
+        domain: "iutparis-seine.u-paris.fr",
         type: "publicitaire",
         action: "block_unless_consent"
     },
     {
-        domain: "lemonde.fr", 
+        domain: "lemonde.fr",
         type: "analytique",
         action: "block_unless_consent"
     },
-    
+
     {
         domain: "google-analytics.com",
         type: "analytique",
@@ -32,7 +32,7 @@ export const liensTab = [
         type: "analytique",
         action: "block_unless_consent"
     },
-    
+
     {
         domain: "doubleclick.net", // Service publicitaire de Google
         type: "publicitaire",
@@ -45,7 +45,7 @@ export const liensTab = [
     },
     {
         domain: "twitter.com", // Pour les widgets de réseaux sociaux ou les traqueurs
-        type: "fonctionnel" ,
+        type: "fonctionnel",
         action: "block_unless_consent"
     },
     {
@@ -53,7 +53,7 @@ export const liensTab = [
         type: "publicitaire",
         action: "block_unless_consent"
     },
-    
+
     {
         domain: "youtube.com", // Vidéos embarquées
         type: "fonctionnel",
@@ -64,7 +64,7 @@ export const liensTab = [
         type: "fonctionnel",
         action: "block_unless_consent"
     },
-    
+
     {
         domain: "api.votre-site-de-paiement.com", // Lien vers un service de paiement essentiel
         type: "essentiel",
@@ -81,3 +81,4 @@ export const liensTab = [
         action: "whitelist"
     }
 ];
+export default liensTab;

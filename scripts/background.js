@@ -1,7 +1,8 @@
-import { lienstab } from "./rules.js"; // importation 
+import liensTab from "./rules.js";
 
- async function getCurrentURL() {
-    const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true});
+async function getCurrentURL() {
+    const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+    if (!tab.url) { return; }
     return tab.url; // returns the current url
 }
 
@@ -18,42 +19,45 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     if (changeInfo.status === 'complete' && tab.active) {
         await handleTabChange();
     }
-    BlocageCookie(); 
+    BlocageCookie();
 });
 
 // partie cookie
 
 function loadWhitelist() {
-    return lienstab;
+    return liensTab;
 } // on rend simplement le tableau disponible
 
-function BlocageCookie() {
-    
-    const liens = getCurrentURL();
+async function BlocageCookie() {
+
+    const liens = await getCurrentURL();
     const liensTab = loadWhitelist();
     let CookieBlocked = 0;
-    
+
     if (!liensTab || liensTab.length === 0) {
         return false;
     }
 
     for (const ruleObject of liensTab) {
 
-        if (liens.includes(ruleObject)) {
+        if (!liensTab.includes(ruleObject)) {
             return;
         }
+
+        console.log("aaaa");
 
         chrome.cookies.getAll({ url: liens }, (cookies) => {
             cookies.forEach(cookie => {
                 chrome.cookies.remove({ url: liens, name: cookie.name });
-                CookieBlockedCount++;
+                CookieBlocked++;
+                console.log("Cookie bloqué : ", cookie.name);
             });
         });
     }
     return CookieBlocked;
 }
 
-export function getBlockedCookieCount() {}
+export function getBlockedCookieCount() { }
 
 
 
