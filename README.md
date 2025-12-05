@@ -36,4 +36,5 @@ Lien du Projet : https://github.com/Naitoo3/Swagify
 
 ### Captures d'écran de démonstration de notre extension
 1. Une utilisation de notre extension sur le site de presse Le Monde :
-![cp1.png]
+![Capture d'écran](cpe1.png)
+
