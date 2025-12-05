@@ -1,6 +1,6 @@
 {
   "name": "Swagify",
-  "description": "Extension google qui bloque les traqueurs publicitaires",
+  "description": " Une extension qui se charge de bloquer les fallacieux traqueurs publicitaires, qui nous maudissent la vie !",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
