@@ -1,22 +1,23 @@
 {
   "name": "Swagify",
-  "description": " Une extension qui se charge de bloquer les fallacieux traqueurs publicitaires, qui nous maudissent la vie !",
-  "version": "1.0",
+  "description": "Une extension qui s'occupe de bloquer les fallacieux traqueurs publicitaires.",
+  "version": "1.0.1",
   "manifest_version": 3,
-  "action": {
-    "default_popup": "main.html",
-    "default_icon": "images/BLANK.jpg"
-  },
-  "background": {
-    "service_worker": "scripts/background.js",
-    "type": "module"
-  },
   "permissions": [
     "cookies",
-    "tabs"
+    "tabs",
+    "storage" 
   ],
   "host_permissions": [
     "http://*/*",
     "https://*/*"
-  ]
+  ],
+  "background": {
+    "service_worker": "background.js", 
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "main.html",
+    "default_icon": "images/BLANK.jpg"
+  }
 }
