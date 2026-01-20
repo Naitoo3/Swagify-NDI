@@ -1,15 +1,16 @@
-// scripts/popup.js
-
 /**
- * Met à jour le compteur affiché dans le DOM.
+ * Updates the counter using data from chrome storage.
+ * @returns counterElement
  */
-function updateCounter(count) {
-    const counterElement = document.getElementById("counter");
+
+function updateCounter() {
+    let counterElement = document.getElementById("counter");
     if (counterElement) {
         counterElement.textContent = count;
         console.log("nb mis à jour est : " + count);
     }
-}
+    return counterElement;
+}   
 
 /**
  * Met à jour le style du bouton en fonction de l'état (ON/OFF).
