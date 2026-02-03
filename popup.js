@@ -1,13 +1,9 @@
-/**
- * Updates the counter using data from chrome storage.
- * @returns counterElement
- */
 
 function updateCounter() {
     let counterElement = document.getElementById("counter");
     if (counterElement) {
         counterElement.textContent = count;
-        console.log("nb mis à jour est : " + count);
+        console.log("UpdatedCount is now : " + count);
     }
     return counterElement;
 }   
@@ -20,10 +16,10 @@ function updateButtonAppearance(isEnabled) {
     if (button) {
         if (isEnabled) {
             button.classList.remove('disabled');
-            button.style.backgroundColor = '#ff0000'; // Rouge (actif)
+            button.style.backgroundColor = '#4FFF60'; // Active
         } else {
             button.classList.add('disabled');
-            button.style.backgroundColor = 'gray'; // Gris (inactif)
+            button.style.backgroundColor = '#8F8F8F'; // Disabled
         }
     }
 }
@@ -32,7 +28,7 @@ function updateButtonAppearance(isEnabled) {
  * Déclenché par le clic du bouton. Envoie un message au Service Worker pour basculer l'état.
  */
 function toggleBlocking() {
-    chrome.runtime.sendMessage({ action: "toggleBlocking" }, (response) => {
+    chrome.runtime.sendMessage({ action: "CookieBlocker" }, (response) => {
         if (response && response.newState !== undefined) {
             // Met à jour l'interface en fonction de la réponse du Service Worker
             updateButtonAppearance(response.newState);
