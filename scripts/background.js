@@ -1,19 +1,27 @@
 import LiensTableau from './rules.js';
     
 // gets the current URL that the user is actively on.
+/**
+ * @summary Grabs the current url of the webpage is user is currently on, and saves it inside array.url.
+ * @param None.
+ * @returns array.url
+ */
 async function getCurrentURL() {
     const [array] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
         if (!array || !array.url) {
+            console.log(array.url);
             return null;
         }
         return array.url;
     
 }
-
+/**
+ * 
+ * @summary detects if a tab is changed, and updates the cookie counter. 
+ */
 async function handleTabChange() {
     const CurrentURL = await getCurrentURL(); // We grab the current link.
-    // console.log("Tab changed, current URL is :", currentURL);
-
+    console.log("Tab changed, current URL is :", CurrentURL);
     await CookieBlocker();
     UpdateCounter(); // We block cookies, and update the counter.
 
@@ -37,14 +45,13 @@ function loadWhitelist() {
 }
 
 async function CookieBlocker() {
-    
-
-
     let IsEnabled = 1; // 1 for on, 0 for off.
+    let CookieBlocked = 0;
     const Links = await getCurrentURL();
     const whitelist = loadWhitelist();
 
     if (whitelist.includes(Links)) {
+        if (IsEnabled) {
         chrome.cookies.getAll({url: Links}, (cookies) => {
             cookies.forEach(cookies => {
                 chrome.cookies.remove({url: Links, name: cookies.name});
@@ -54,8 +61,8 @@ async function CookieBlocker() {
             });
         });
     }
-
-    return CookieBlocked;   
+    return CookieBlocked; // to be used in popup.js (displays the amount of blocked cookies essentially)
+    }
 }
 
 async function UpdateCounter(counterElement) {
@@ -82,5 +89,7 @@ function ToggleButton() {
     }
 
     return ButtonState;  
-} // TODO: Fix document error, and the background js error and test script.  
+} 
+
+// TODO: Make this Work
 
